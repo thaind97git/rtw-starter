@@ -1,43 +1,31 @@
+import { Dispatch } from 'redux';
 import { getCurrentUser } from '@/apis/auth';
-import { setLoading } from '.';
 import { history } from '@/store';
 import { getToken } from '@/helpers/local-storage';
-import { AuthAction } from '../types/auth';
-import { Dispatch } from 'redux';
-export const SET_AUTHENTICATED = 'SET_AUTHENTICATED';
-export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+import { setLoading } from '../slices/appSlice';
+import { setCurrentUser, setAuthenticated } from '../slices/authSlice';
 
 export const verifyToken =
   () =>
   async (dispatch: Dispatch): Promise<void> => {
-    let response;
     if (!getToken()) {
       history.push('/login');
     }
     try {
-      dispatch(setCurrentUser(null));
       dispatch(setLoading(true));
-      dispatch(setIsAuthenticated(false));
-      response = await getCurrentUser();
-      dispatch(setLoading(false));
-      if (response && response.data) {
-        dispatch(setCurrentUser(response.data));
-        dispatch(setIsAuthenticated(true));
+
+      dispatch(setCurrentUser(null));
+      dispatch(setAuthenticated(false));
+
+      const { data } = await getCurrentUser();
+
+      if (data) {
+        dispatch(setCurrentUser({ ...(data as object) }));
+        dispatch(setAuthenticated(true));
       }
     } catch (error) {
-      dispatch(setLoading(false));
       history.push('/login');
+    } finally {
+      dispatch(setLoading(false));
     }
   };
-
-export const setIsAuthenticated = (isAuthenticated = false): AuthAction => ({
-  type: SET_AUTHENTICATED,
-  payload: {
-    isAuthenticated,
-  },
-});
-
-export const setCurrentUser = (currentUser: object | any): AuthAction => ({
-  type: SET_CURRENT_USER,
-  payload: currentUser,
-});

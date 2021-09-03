@@ -1,15 +1,9 @@
-// import { getIsAuthenticated } from '@/store/selectors/auth';
-import { getDisplayLayout } from '@/store/selectors/layout';
-import { ILayout } from '@/store/types/layout';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { ILayout, selectDisplayLayout } from '@/store/slices/layoutSlice';
 
 const Header: React.FC = () => {
-  const layout: ILayout = useSelector(getDisplayLayout);
-  // const isAuthenticated = useSelector(getIsAuthenticated);
-  // if (!isAuthenticated || !header) {
-  //   return null;
-  // }
+  const layout: ILayout = useSelector(selectDisplayLayout);
 
   if (!layout.header) {
     return null;

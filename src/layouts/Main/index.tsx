@@ -1,15 +1,17 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import routes from '@/router';
 import { useDispatch } from 'react-redux';
-import { getDisplayLayout } from '@/store/selectors/layout';
+import routes from '@/router';
 import { compareTwoObject } from '@/utils';
-import { setDisplayLayout } from '@/store/actions/layout';
-import { ILayout } from '@/store/types/layout';
+import {
+  ILayout,
+  selectDisplayLayout,
+  setDisplayLayout,
+} from '@/store/slices/layoutSlice';
 import { useShallowEqualSelector } from '@/hooks/useShallowEqualSelector';
 
 const Main: React.FC = () => {
-  const layout: ILayout = useShallowEqualSelector(getDisplayLayout);
+  const layout: ILayout = useShallowEqualSelector(selectDisplayLayout);
   const dispatch = useDispatch();
 
   const updateDisplayLayout = (currentLayout: ILayout, layout: ILayout) => {

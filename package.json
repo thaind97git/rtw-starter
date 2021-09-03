@@ -20,6 +20,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.6.1",
     "axios": "^0.21.1",
     "connected-react-router": "^6.9.1",
     "i18next": "^20.4.0",
@@ -95,7 +96,6 @@
     "prettier": "^2.2.1",
     "react-dev-utils": "^11.0.4",
     "react-test-renderer": "^17.0.2",
-    "redux-devtools-extension": "^2.13.9",
     "resolve-url-loader": "^4.0.0",
     "sass-loader": "^12.1.0",
     "style-loader": "^3.2.1",

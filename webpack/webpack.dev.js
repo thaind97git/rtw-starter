@@ -17,12 +17,6 @@ module.exports = merge(common, {
   mode: 'development',
   devtool: 'cheap-module-source-map',
   devServer: {
-    client: {
-      overlay: {
-        errors: true,
-        warnings: false,
-      },
-    },
     devMiddleware: {
       stats: {
         colors: true,
@@ -51,6 +45,7 @@ module.exports = merge(common, {
       inject: true,
       template: appHtml,
     }),
+    // new webpack.HotModuleReplacementPlugin(),
     // new BundleAnalyzerPlugin({ analyzerPort: REACT_APP_PORT })
   ],
   output: {

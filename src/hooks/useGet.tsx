@@ -1,8 +1,8 @@
 import { useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { setLoading } from '@/store/actions';
 import httpRequest from '@/services/http-request';
+import { setLoading } from '@/store/slices/appSlice';
 
 import useSafeState from './useSafeState';
 

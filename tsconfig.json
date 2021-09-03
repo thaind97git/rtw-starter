@@ -11,11 +11,12 @@
     "esModuleInterop": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "typeRoots": ["./config/@types", "./node_modules/@types"],
+    "typeRoots": ["config/@types", "node_modules/@types"],
     "paths": {
       "@/static/*": ["public/static/*"],
       "@/*": ["src/*"]
     }
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "include": ["src/*", "config/@types"]
 }

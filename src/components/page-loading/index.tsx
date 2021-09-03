@@ -1,4 +1,4 @@
-import { getLoading } from '@/store/selectors';
+import { selectLoading } from '@/store/slices/appSlice';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Spinner from '../spinner';
@@ -8,7 +8,7 @@ interface IProps {
 }
 
 const PageLoading: React.FC<IProps> = ({ show }) => {
-  const loading = useSelector(getLoading);
+  const { loading } = useSelector(selectLoading);
   const showLoading = typeof show === 'boolean' ? show : loading;
 
   return (
