@@ -4,7 +4,7 @@
   "description": "The React-Typescript Boilerplate with Webpack config manual",
   "main": "index.js",
   "scripts": {
-    "postinstall": "node .postinstall",
+    "postinstall": "node .huskyinstall",
     "test": "jest --config src/jest.config.js --updateSnapshot",
     "start": "webpack serve --config webpack/webpack.dev.js --hot",
     "prod": "node server.js",
@@ -77,7 +77,7 @@
     "file-loader": "^6.2.0",
     "html-loader": "^2.1.2",
     "html-webpack-plugin": "^5.3.1",
-    "husky": "^7.0.2",
+    "husky": "^7.0.0",
     "import-glob": "^1.5.0",
     "jest": "^27.0.6",
     "jest-watch-typeahead": "^0.6.2",

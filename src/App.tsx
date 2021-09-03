@@ -9,7 +9,7 @@ import Layout from '@/layouts';
 import PageLoading from '@/components/page-loading';
 
 // multi language
-// import '@/locales'
+import '@/locales/i18n';
 
 // load app SCSS styles
 import '@/styles/App.scss';

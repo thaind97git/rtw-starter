@@ -24,7 +24,6 @@ module.exports = {
     'react/jsx-tag-spacing': 'off',
     'array-bracket-spacing': [0, 'never'],
     'react/prop-types': 'off',
-    'no-unused-vars': 'warn',
     'prefer-const': 'warn',
     'jsx-quotes': ['error', 'prefer-double'],
     'no-console': 'off',
