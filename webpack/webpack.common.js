@@ -4,15 +4,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const configPath = '../config';
 const paths = require(`${configPath}/paths`);
-const common = require(`${configPath}/common`);
 const getClientEnvironment = require(`${configPath}/env`);
 
 const { appIndexJs, esLintFile, appBuild, publicUrlOrPath } = paths;
-const { getStyleLoaders } = common;
 
 // We will provide `paths.publicUrlOrPath` to our app
 // as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
@@ -54,10 +51,6 @@ module.exports = {
         },
       },
       {
-        test: /\.(js|jsx|tsx)$/,
-        exclude: [/node_modules/],
-      },
-      {
         test: /\.svg$/,
         use: ['@svgr/webpack'],
       },
@@ -67,19 +60,19 @@ module.exports = {
       },
       {
         test: cssRegex,
-        use: getStyleLoaders(),
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: sassRegex,
-        use: getStyleLoaders({}, 'sass-loader'),
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
-        exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
-        test: /\.(png|jpe?g|gif)$/i,
-        loader: 'file-loader',
-        options: {
-          name: 'static/media/[name].[hash:8].[ext]',
-        },
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
       },
     ],
   },
@@ -107,9 +100,6 @@ module.exports = {
     new LodashModuleReplacementPlugin(),
     // new webpack.optimize.UglifyJsPlugin({}),
   ],
-  optimization: {
-    minimizer: [new UglifyJsPlugin()],
-  },
   output: {
     // The build folder.
     path: appBuild,

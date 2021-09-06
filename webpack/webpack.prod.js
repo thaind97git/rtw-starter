@@ -7,17 +7,16 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const safePostCssParser = require('postcss-safe-parser');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const ImageminWebpack = require('image-minimizer-webpack-plugin');
 const paths = require('../config/paths');
 const { appBuild, appPublic, appHtml } = paths;
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
-const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 
 module.exports = merge(common, {
   mode: 'production',
-  devtool: shouldUseSourceMap ? 'source-map' : false,
+  devtool: false,
   plugins: [
     new CopyWebpackPlugin({
       patterns: [
@@ -123,26 +122,16 @@ module.exports = merge(common, {
             ascii_only: true,
           },
         },
-        sourceMap: shouldUseSourceMap,
       }),
       // This is only used in production mode
-      new OptimizeCSSAssetsPlugin({
-        cssProcessorOptions: {
-          parser: safePostCssParser,
-          map: shouldUseSourceMap
-            ? {
-                // `inline: false` forces the sourcemap to be output into a
-                // separate file
-                inline: false,
-                // `annotation: true` appends the sourceMappingURL to the end of
-                // the css file, helping the browser find the sourcemap
-                annotation: true,
-              }
-            : false,
+      new CssMinimizerPlugin(),
+      new ImageminWebpack({
+        severityError: 'warning', // Ignore errors on corrupted images
+        minimizerOptions: {
+          plugins: ['gifsicle'],
         },
-        cssProcessorPluginOptions: {
-          preset: ['default', { minifyFontValues: { removeQuotes: false } }],
-        },
+        // Disable `loader`
+        loader: false,
       }),
     ],
   },
