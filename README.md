@@ -1,165 +1,168 @@
-# Getting Started with RW-Starter
+<br  />
 
-The RW-Starter was config with React and Webpack without CRA
+<div  align="center"><strong>Start your react typescript project with manual webpack config in seconds</strong></div>
+
+<div  align="center">Flexible to control webpack, easy to deploy</div>
+<div align="center"><sub><i>Keywords: React Starter, Webpack, Typescript, React.js, Redux, Babel, jest, react-router, sass, redux-thunk, pm2</i></sub></div>
+
+<p align="center"><sub>Created with by 👻 <a href="#">Aldenn</a></sub></p>
+
+<br  />
+
+# Overview
+
+React-Typescript-Webpack was config with React, Typescript and Webpack without CRA. Faster to star next react project.
+
+---
 
 ## Quick Start
 
-Commands to run scripts
+For Development:
 
-```
-yarn start // Run the project with DEV environment
-yarn build // Builds the app for production to the build folder
-```
+1. Clone this repo to your local machine using:
 
-The boilerplate project's structure will look similar to this:
+   ```
+   git clone git@github.com:thaind97git/react-typescript-webpack.git
+   ```
 
-```bash
-RW-Starter
-├── .husky
-├── .vscode
-├── .babelrc
-├── .env
-├── .eslintignore
-├── .eslintrc.js
-├── .gitignore
-├── .postinstall
-├── .prettierignore
-├── jsconfig.js
-├── package-lock.json
-├── package.json
-├── config
-│  ├── jest
-│  │  ├── babelTransform.js
-│  │  ├── createJestConfig.js
-│  │  ├── cssTransform.js
-│  │  ├── fileTransform.js
-│  │  └── index.js
-│  ├── common.js
-│  ├── env.js
-│  └── paths.js
-│
-├── public
-│  ├── static
-│  │  ├── image
-│  │  └── ...
-│  ├── favicon.ico
-│  ├── index.html
-│  └── manifest.json
-│
-├── build
-│  ├── favicon.ico
-│  ├── index.html
-│  ├── manifest.json
-│  ├── service-worker.js
-│  └── ...
-├── webpack
-│  ├── webpack.common.js
-│  ├── webpack.dev.js
-│  └── webpack.prod.js
-└── src
-   ├── App.js
-   ├── App.test.js
-   ├── index.js
-   ├── setupTests.js
-   ├── apis
-   ├── components
-   │  ├── button
-   │  │  ├── index.js
-   │  │  └── style.scss
-   │  ├── input
-   │  │  ├── index.js
-   │  │  └── style.scss
-   │  └── ...
-   ├── features
-   │  ├── core  # core feature
-   │  │  ├── components
-   │  │  │  ├── login
-   │  │  │  │  ├── index.js
-   │  │  │  │  └── style.scss
-   │  │  │  └── ... # other components for core feature like 404, 403, 500, register, ...
-   │  │  └── route.js # core routes
-   │  ├── todo  # todo feature
-   │  │  ├── components
-   │  │  │  ├── detail
-   │  │  │  │  ├── index.js
-   │  │  │  │  └── style.scss
-   │  │  │  ├── list
-   │  │  │  │  ├── index.js
-   │  │  │  │  └── style.scss
-   │  │  │  └── ... # other components for todo feature
-   │  │  └── route.js # todo routes
-   │  └── ... # other feature like user, transaction, ...
-   ├── helpers
-   │  ├── local-storage.js
-   │  ├── router.js
-   │  ├── toast.js
-   │  └── ...
-   ├── hooks
-   │  ├── useShallowEqualSelector.js
-   │  ├── useQueryParam.js
-   │  ├── useShallowEqualSelector.js
-   │  ├── useWindowSize.js
-   │  └── ...
-   ├── layout
-   │  ├── footer
-   │  │  ├── index.js
-   │  │  └── style.scss
-   │  ├── header
-   │  │  ├── index.js
-   │  │  └── style.scss
-   │  ├── main
-   │  │  ├── index.js
-   │  │  └── style.scss
-   │  └── index.js
-   ├── locales
-   ├── router
-   │  └── index.js # merge all page-route to one root-route
-   ├── services
-   │  ├── axios-base.js
-   │  ├── http-request.js
-   │  └── ...
-   ├── store  # redux configuration
-   │  ├── actions
-   │  │  ├── auth.js
-   │  │  ├── index.js
-   │  │  ├── layout.js
-   │  │  └── ...
-   │  ├── reducers
-   │  │  ├── auth.js
-   │  │  ├── index.js
-   │  │  ├── layout.js
-   │  │  └── ...
-   │  ├── selectors
-   │  │  ├── auth.js
-   │  │  ├── index.js
-   │  │  ├── layout.js
-   │  │  └── ...
-   │  └── index.js
-   ├── styles  # app style configuration
-   │  ├── _breakpoints_.scss
-   │  ├── _color.scss
-   │  ├── _container_.scss
-   │  ├── _grid_.scss
-   │  ├── _size_.scss
-   │  ├── _utils_.scss
-   │  ├── ...
-   │  └── App.scss
-   └── utils  # Utilities function
-```
+2. Change the current working directory to the project:
+
+   ```
+   cd react-typescript-webpack
+   ```
+
+3. Install dependencies:
+
+   ```
+   [ yarn or npm ] install
+   ```
+
+4. At this point you can run `npm run dev` or `yarn dev` to run project with development mode
+
+   _Now, your browser will auto open at `http://127.0.0.1:3000`_
+
+For Production:
+
+1. Run command to build:
+
+   ```
+   [ yarn or npm run ] build
+   ```
+
+2. Run project at build directory
+   - Using pm2: `[ yarn or npm run ] start-pm2`
+   - Run with terminal: `[ yarn or npm run ] start`
+
+---
+
+## Features
+
+- [x] React hook
+- [x] Webpack 5
+- [x] Typescript
+- [x] Sass
+- [x] Redux-thunk
+- [ ] Redux-saga
+- [x] Jest
+- [x] Axios
+- [x] I18n
+- [x] React-router
+- [x] Alias
+- [x] Hot reload
+- [x] Eslint
+- [x] Prettier and Husky
+
+---
+
+## How to using
+
+- Router:
+
+  - Create new feature at `src/features/<feature-name/>`
+  - Create a `route.ts` inside `src/features/<feature-name/>` and export a default array match with rules:
+
+    ```
+    import { lazy } from 'react';
+    const Component = lazy(() => import('./path-to-component'));
+
+    export default [
+      {
+        /*
+         * name of a route
+         * using to apply key react when generate routes
+         * required
+        */
+        name: 'name',
+        /*
+         * path of route
+        */
+        path: '/path-name',
+        /*
+         * using as exact in react-router
+        */
+        exact: true,
+        /*
+         * dynamic render layout for each route
+         * header: false -> route will auto hide header
+         * if this rendered don't need to declare
+         * control this inside `src/store/slices/layoutSlice` with more section
+        */
+        layout: {
+          header: false,
+          footer: false,
+        },
+        /*
+         * component rendered inside route
+        */
+        component: Component,
+      },
+    ];
+    ```
+
+    _- You don't need do anything else after create and modify `route.ts` because i'm using [import-glob](https://www.npmjs.com/package/import-glob) to auto import (check at `webpack/webpack.common.js` for plugin, `src/router/index.ts` and `src/layouts/main/index.tsx` for using)._
+
+    _- If you don't want to use auto import or <b>using project with jest</b>, just using the code that i'm commented. Because i'm not yet support auto import for jest._
+
+- Write new component
+
+  - Create new folder at `src/components/<component-name/>`
+  - Create an `index.tsx` and `style.scss`
+
+    _- <b>Don't need</b> import `scss` into component, It will already merged into App.scss after you restart server._
+
+    _- This is a feature by using [import-glob](https://www.npmjs.com/package/import-glob) (check at `webpack/webpack.common.js` for plugin and `src/styles/App.scss` for using)_
+
+    _- You should use [BEM](http://getbem.com/) to write css without conflict_
+
+---
+
+## Carefully
+
+- Don't create folder with the `PascalCase`. Because it will throw error when build prod at ubuntu. I will fix it later or happy if you have a PR to fix it.
+  ```
+  Module not found: Error: Can't resolve '@/path-to-pascal-case' in '/path-to-lower-case'
+  ```
+
+---
 
 ## Other References
 
 - Webpack Plugins
-  - [import-glob](https://www.npmjs.com/package/import-glob) // dynamic import like `import RouteModules from '../pages/**/route.js'`
+  - [ts-loader](https://github.com/TypeStrong/ts-loader)
+  - [import-glob](https://www.npmjs.com/package/import-glob)
   - [eslint-loader](https://www.npmjs.com/package/eslint-loader)
-  - [sass](https://www.npmjs.com/package/sass), [sass-loader](https://www.npmjs.com/package/sass-loader) // Use Sass
-  <!-- - [less](https://www.npmjs.com/package/less), [less-loader](https://www.npmjs.com/package/less-loader) // Use Less -->
-  - [file-loader](https://www.npmjs.com/package/file-loader) // Use files import
-  - [html-loader](https://www.npmjs.com/package/html-loader) // Use Html files import
-  - [alias](https://webpack.js.org/configuration/resolve/) // Shorten import
-  - [lodash-webpack-plugin](https://www.npmjs.com/package/lodash-webpack-plugin) // Dynamic loader for lodash
-  - [webpack-manifest-plugin](https://www.npmjs.com/package/webpack-manifest-plugin) // Use Manifest
+  - [babel-loader](https://github.com/babel/babel-loader)
+  - [svg-loader](https://github.com/gregberge/svgr)
+  - [sass](https://www.npmjs.com/package/sass), [sass-loader](https://www.npmjs.com/package/sass-loader)
+  - [html-loader](https://www.npmjs.com/package/html-loader)
+  - [alias](https://webpack.js.org/configuration/resolve/)
+  - [webpack-manifest-plugin](https://www.npmjs.com/package/webpack-manifest-plugin)
   - ...
 - [React-scripts CRA](https://github.com/facebook/create-react-app/tree/master/packages/react-scripts/config)
 - [Husky](https://typicode.github.io/husky/#/)
 - [Lint-Staged](https://github.com/okonet/lint-staged)
+
+## License
+
+This project is licensed under the MIT license, Copyright (c) 2021 Aldenn.
+For more information see `LICENSE.md`.

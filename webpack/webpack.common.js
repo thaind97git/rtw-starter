@@ -74,16 +74,6 @@ module.exports = {
         test: /\.(png|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
       },
-      // {
-      //   exclude: [ /\.html$/, /\.(js|jsx)$/, /\.css$/, /\.scss$/,
-      //     /\.json$/
-      //   ],
-      //   test: /\.(pdf|png|jpe?g|gif)$/i,
-      //   loader: 'file-loader',
-      //   options: {
-      //     name: 'static/media/[name].[hash:8].[ext]'
-      //   }
-      // }
     ],
   },
   resolve: {
