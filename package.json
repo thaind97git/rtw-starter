@@ -1,5 +1,7 @@
 {
-  "name": "react-typescript-starter",
+  "author": "aldenn",
+  "license": "ISC",
+  "name": "react-webpack-typescript-starter",
   "version": "1.0.0",
   "description": "The React-Typescript Boilerplate with Webpack config manual",
   "main": "index.js",
@@ -17,8 +19,6 @@
     "*.+(js|jsx|ts|tsx)": "eslint --max-warnings 0 --fix",
     "*.+(js|jsx|ts|tsx|json|css|md)": "prettier --write"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.1",
     "axios": "^0.21.1",

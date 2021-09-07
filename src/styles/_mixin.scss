@@ -10,6 +10,12 @@
   }
 }
 
+@mixin s-mobile() {
+  @media screen and (max-width: $screenSM - 1) {
+    @content;
+  }
+}
+
 @mixin mobile() {
   @media screen and (max-width: $screenMD - 1) {
     @content;

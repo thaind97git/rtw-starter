@@ -6,9 +6,11 @@ const Home: React.FC = () => {
   const history = useHistory();
   return (
     <div className="row">
-      <Button warning onClick={() => history.push('/todos')}>
-        Go to todo-list
-      </Button>
+      <div className="container">
+        <Button warning onClick={() => history.push('/todos')}>
+          Go to todo-list
+        </Button>
+      </div>
     </div>
   );
 };

@@ -25,7 +25,7 @@ const Main: React.FC = () => {
   };
 
   return (
-    <div id="main" className="container">
+    <div id="main">
       <Switch>
         {routes.map(
           ({

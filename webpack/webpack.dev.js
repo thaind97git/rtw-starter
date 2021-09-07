@@ -17,6 +17,12 @@ module.exports = merge(common, {
   mode: 'development',
   devtool: 'cheap-module-source-map',
   devServer: {
+    client: {
+      overlay: {
+        warnings: false,
+        errors: true,
+      },
+    },
     devMiddleware: {
       stats: {
         colors: true,

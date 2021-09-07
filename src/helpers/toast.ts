@@ -8,7 +8,7 @@ export const BOTTOM_RIGHT = 'bottom-right';
 export const BOTTOM_CENTER = 'bottom-center';
 
 const TOAST_DEFAULT_OPTIONS = {
-  position: TOP_RIGHT,
+  position: TOP_CENTER,
   autoClose: 5000,
   pauseOnHover: true,
   closeOnClick: true,

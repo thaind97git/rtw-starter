@@ -1,14 +1,14 @@
 import React, { Fragment } from 'react';
+
 import { ensureArray } from '@/utils';
-
 import { generatePath, goURL } from '@/helpers/router';
-import Icon from '@/components/icon';
+import { Todo } from '../../types';
 
-import ViewDetailsICon from '@/static/image/icon/view-details.svg';
-import EditIcon from '@/static/image/icon/edit.svg';
+import ViewDetailsICon from '@/static/images/icon/view-details.svg';
+import EditIcon from '@/static/images/icon/edit.svg';
 
 interface IProps {
-  todos: Array<object>;
+  todos: Array<Todo>;
 }
 
 const TodoList: React.FC<IProps> = ({ todos = [] }) => {
@@ -19,17 +19,15 @@ const TodoList: React.FC<IProps> = ({ todos = [] }) => {
         return (
           <Fragment key={id}>
             <li className="todo-list__item">
-              <Icon
+              <ViewDetailsICon
                 className="todo-list__item__icon"
-                src={ViewDetailsICon}
                 onClick={() =>
                   goURL(generatePath(['todos', 'details'], { id }))
                 }
               />
-              <Icon
+              <EditIcon
                 onClick={() => goURL(generatePath(['todos', 'edit'], { id }))}
                 className="todo-list__item__icon"
-                src={EditIcon}
               />
               {title}
             </li>

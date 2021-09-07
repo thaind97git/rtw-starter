@@ -1,48 +1,70 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-
+import { useDispatch } from 'react-redux';
 import { getTodoDetails } from '@/apis/todo';
+import { setLoading } from '@/store/slices/appSlice';
 
-import useGet from '@/hooks/useGet';
-import Icon from '@/components/icon';
 import RLink from '@/components/r-link';
 import Button from '@/components/button';
 import EmptyRecord from '@/components/empty-record';
+import { errorHandler } from '@/helpers/axios';
+import { Todo } from '@/features/todo/types';
 
-import BackIcon from '@/static/image/icon/back.svg';
+import BackIcon from '@/static/images/icon/back.svg';
 
 const TodoDetails: React.FC = () => {
   const params: { id?: string } = useParams();
   const { id } = params;
-
-  const { data: todoDetails, fetching } = useGet({
-    func: () => getTodoDetails(id),
-    triggerCondition: !!id,
+  const dispatch = useDispatch();
+  const [todo, setTodo] = useState<{ data?: Todo; fetching: boolean }>({
+    fetching: false,
   });
 
-  if (id && fetching) {
+  const fetchTodoDetails = useCallback(
+    async id => {
+      dispatch(setLoading(true));
+      setTodo(prev => ({ ...prev, fetching: true }));
+      try {
+        const { data } = await getTodoDetails(id);
+        setTodo(prev => ({
+          ...prev,
+          data,
+        }));
+      } catch (error) {
+        errorHandler(error);
+      } finally {
+        dispatch(setLoading(false));
+        setTodo({
+          fetching: false,
+        });
+      }
+    },
+    [dispatch],
+  );
+
+  useEffect(() => {
+    fetchTodoDetails(id);
+  }, [fetchTodoDetails, id]);
+
+  if (id && todo.fetching) {
     return <>Fetching Todo Details...</>;
   }
 
-  if (!id || !todoDetails) {
+  if (!id || !todo.data) {
     return <EmptyRecord title="Can not find any todo" />;
   }
 
   return (
     <div className="todo-details">
       <Button>
-        <RLink
-          className="back"
-          to="/todos"
-          prefix={<Icon small src={BackIcon} />}
-        >
+        <RLink className="back" to="/todos" prefix={<BackIcon />}>
           Back
         </RLink>
       </Button>
       <h3>Todo Details here</h3>
-      <b>Id:</b> {todoDetails.id}
+      <b>Id:</b> {todo.data.id}
       <br />
-      <b>Title:</b> {todoDetails.title}
+      <b>Title:</b> {todo.data.title}
     </div>
   );
 };

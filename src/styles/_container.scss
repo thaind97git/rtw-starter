@@ -1,65 +1,72 @@
-// Grid containers
-//
-// Define the maximum width of `.container` for different screen sizes.
-
-// scss-docs-start container-max-widths
-$container-max-widths: (
-  sm: 768px,
-  md: 1024px,
-  lg: 1280px,
-  xl: 1920px // xxl: 1320px,
-) !default;
-// scss-docs-end container-max-widths
-
-// Container mixins
-$grid-gutter-width: 1.5rem !default;
-$container-padding-x: $grid-gutter-width / 2 !default;
-$grid-columns: 12 !default;
-$grid-row-columns: 6 !default;
-
-@mixin make-container($gutter: $container-padding-x) {
-  width: 100%;
-  padding-right: var(--#{$variable-prefix}gutter-x, #{$gutter});
-  padding-left: var(--#{$variable-prefix}gutter-x, #{$gutter});
-  margin-right: auto;
-  margin-left: auto;
-}
-
-// Container widths
-//
-// Set the container width, and override it for fixed navbars in media queries.
-
-// Single container class with breakpoint max-widths
-.container,
-  // 100% wide container at all breakpoints
-  .container-fluid {
-  @include make-container();
-}
-
-// Responsive containers that are 100% wide until a breakpoint
-@each $breakpoint, $container-max-width in $container-max-widths {
-  .container-#{$breakpoint} {
-    @extend .container-fluid;
-  }
-
-  @include media-breakpoint-up($breakpoint, $grid-breakpoints) {
-    %responsive-container-#{$breakpoint} {
-      max-width: $container-max-width;
+@mixin min($bp, $max: 'null', $device: 'screen') {
+  @if $max == 'null' {
+    @media only #{$device} and (min-width: #{$bp}) {
+      @content;
     }
+  } @else {
+    @media only #{$device} and (min-width: #{$bp}) and (max-width: #{$max}) {
+      @content;
+    }
+  }
+}
 
-    // Extend each breakpoint which is smaller or equal to the current breakpoint
-    $extend-breakpoint: true;
+@function bp($bp) {
+  @return map-get($breakpoints, $bp);
+}
 
-    @each $name, $width in $grid-breakpoints {
-      @if ($extend-breakpoint) {
-        .container#{breakpoint-infix($name, $grid-breakpoints)} {
-          @extend %responsive-container-#{$breakpoint};
-        }
+$breakpoints: (
+  na: 0px,
+  xs: $screenXS,
+  // Smartphone
+  sm: $screenSM,
+  // Tablets
+  md: $screenMD,
+  // Tablets Landscape and small desktops
+  lg: $screenLG,
+  // Desktops
+  xl: $screenXL,
+  // Large Desktop
+);
 
-        // Once the current breakpoint is reached, stop extending
-        @if ($breakpoint == $name) {
-          $extend-breakpoint: false;
-        }
+@function container($container-size, $true-val: false) {
+  @return map-get($container-sizes, $container-size);
+}
+
+$container-sizes: (
+  sm: map-get($breakpoints, sm) - 30px,
+  md: map-get($breakpoints, md) - 40px,
+  lg: map-get($breakpoints, lg) - 50px,
+  xl: map-get($breakpoints, xl) - 400px,
+);
+
+.container {
+  padding-right: 1rem;
+  padding-left: 1rem;
+
+  &:not(.is-fluid) {
+    margin: 0 auto;
+
+    @each $bp, $container-size in $container-sizes {
+      @include min(#{bp(#{$bp})}) {
+        width: 100%;
+        max-width: container(#{$bp});
+      }
+    }
+  }
+}
+
+@each $bp, $container-size in $container-sizes {
+  .container-#{$bp} {
+    margin: 0 auto;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    width: 100%;
+
+    $i: index($container-sizes, $bp $container-size);
+
+    @for $j from $i through length($container-sizes) {
+      @include min(#{bp(nth(nth($container-sizes, $j), 1))}) {
+        max-width: container(#{nth(nth($container-sizes, $j), 1)});
       }
     }
   }
